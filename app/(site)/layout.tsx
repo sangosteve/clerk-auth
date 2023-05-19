@@ -1,6 +1,8 @@
-import "./globals.css";
+import "../globals.css";
 import { Inter } from "next/font/google";
 import { ClerkProvider } from "@clerk/nextjs";
+import Navbar from "../components/Navbar";
+import Sidebar from "../components/Sidebar/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -17,7 +19,13 @@ export default function RootLayout({
   return (
     <ClerkProvider>
       <html lang="en">
-        <body className={inter.className}>{children}</body>
+        <body className="bg-gray-100 w-full h-full flex">
+          <Sidebar />
+          <main className="flex flex-1 flex-col pl-64">
+            <Navbar />
+            <div className="flex flex-1 flex-col mt-12">{children}</div>
+          </main>
+        </body>
       </html>
     </ClerkProvider>
   );
